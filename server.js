@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors((req, callback) => {
-    const allowedOrigins = ["http://localhost:3000"];
+    const allowedOrigins = ["https://fitnessden1.netlify.app"];
     const origin = req.headers.origin;
 
     if (allowedOrigins.includes(origin)) {
