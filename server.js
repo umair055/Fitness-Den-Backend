@@ -9,8 +9,6 @@ const paymentRouter = require("./router/paymentroute");
 const blogRouter = require("./router/blogrouter");
 const productRouter = require("./router/productrouter");
 
-require("./database/connection");
-
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 
@@ -41,7 +39,14 @@ app.use("/fitness-den/product", productRouter);
 app.get("/", (req, res) => {
   res.json("SERVER STARTED");
 });
-
-app.listen(PORT, () => {
-  console.log(`APP IS RUNNING ON http://localhost:${PORT}`);
-});
+mongoose
+  .connect(process.env.DATABASE)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`APP IS RUNNING ON http://localhost:${PORT}`);
+    });
+    console.log("DATABASE CONNECTED SUCCESSFULLY!!");
+  })
+  .catch((error) => {
+    console.log("FAILED TO CONNECT TO DATABASE", error);
+  });
