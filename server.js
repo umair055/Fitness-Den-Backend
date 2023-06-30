@@ -8,7 +8,7 @@ const dietPlanRouter = require("./router/dietroutes");
 const paymentRouter = require("./router/paymentroute");
 const blogRouter = require("./router/blogrouter");
 const productRouter = require("./router/productrouter");
-
+const mongoose = require("mongoose");
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 
