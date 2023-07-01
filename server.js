@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors((req, callback) => {
-    const allowedOrigins = ["https://fitnessden1.netlify.app"];
+    const allowedOrigins = ["https://fitness-den-frontend.vercel.app"];
     const origin = req.headers.origin;
 
     if (allowedOrigins.includes(origin)) {
