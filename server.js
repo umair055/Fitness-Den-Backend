@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-const whitelist = ["https://fitness-den.netlify.app"];
+const whitelist = ["https://fitness-den-frontend.vercel.app"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
