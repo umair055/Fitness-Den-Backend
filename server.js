@@ -8,6 +8,7 @@ const dietPlanRouter = require("./router/dietroutes");
 const paymentRouter = require("./router/paymentroute");
 const blogRouter = require("./router/blogrouter");
 const productRouter = require("./router/productrouter");
+const mongoose = require("mongoose");
 
 require("./database/connection");
 
@@ -41,7 +42,14 @@ app.use("/fitness-den/product", productRouter);
 app.get("/", (req, res) => {
   res.json("SERVER STARTED");
 });
-
-app.listen(PORT, () => {
-  console.log(`APP IS RUNNING ON http://localhost:${PORT}`);
-});
+mongoose
+  .connect(process.env.DATABASE)
+  .then(() => {
+    console.log("DATABASE CONNECTED SUCCESSFULLY!!");
+    app.listen(PORT, () => {
+      console.log(`APP IS RUNNING ON http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log("FAILED TO CONNECT TO DATABASE", error);
+  });
